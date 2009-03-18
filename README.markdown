@@ -9,6 +9,7 @@ PyMethodMatch's Purpose In Life
 PyMethodMatch is a library for parsing very high level (and ideally very Human Language like) commands.
 
 There's two ways to look at PyMethodMatch:
+
   1. From the end user's perspective: your app takes very simple phrases that will run things
   2. From the programmer's perspective: you set up regex keys and values. If the phrase coming in matches one of the regex,
     that function will be executed.
@@ -32,4 +33,19 @@ In Cucumber these phrases are matched to blocks of code, and these code blocks e
 PyMatcher API
 ==============================================
 
+First, create a new Matcher object:
 
+`from PyMethodMatch.method_matcher import Matcher
+matcher = Matcher()`
+
+Define a function to be called and match it up with a regular expression with a register() call
+
+`def call_me(matchObj):
+    print "hello world"
+matcher.register("I am the regular expression to match to this function", call_me)`
+
+When you are ready to (potentially) call one of your functions, call
+
+`matcher.execute("I am the regular expression to match to this function")`
+
+The result of the function will be returned to you.
